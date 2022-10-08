@@ -1,3 +1,8 @@
+# dataset
 data/*g
 
+# cache files
 __pycache__/
+
+# notebooks are blocked for now
+notebooks/
