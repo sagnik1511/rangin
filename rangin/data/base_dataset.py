@@ -18,7 +18,7 @@ class RDataset:
         img = Image.open(path)
         img = img.resize(self.size)
         return img
-    
+
     def load_bw(self, path):
         img = Image.open(path).convert('L')
         img = img.resize(self.size)
