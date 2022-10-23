@@ -5,10 +5,11 @@ from rangin.models import *
 from rangin.utils.inference import save_outputs
 from utils.inference import *
 
-def infer(input_data, model, pretrained_weights, output_directory):
+
+def infer(input_data, model, pretrained_weights, output_directory, device="cpu"):
 
     device = torch.device(device) if device == "cpu" else torch.device(f"cuda:{device}")
-    
+
     if isinstance(input_data) == str:
         input_data = image_from_path(input_data)
     elif isinstance(input_data) == np.ndarray:
@@ -17,12 +18,12 @@ def infer(input_data, model, pretrained_weights, output_directory):
         pass
     else:
         raise NotImplementedError
-    
+
     if input_data.ndim == 3:
         input_data = input_data.unsqueeze(0)
     if input_data.shape[3] == 1:
         input_data = input_data.permute(0, 3, 1, 2)
-    
+
     if not os.path.exists(pretrained_weights):
         print("Pretrained weights file not found")
         raise FileNotFoundError

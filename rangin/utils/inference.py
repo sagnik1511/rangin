@@ -3,6 +3,7 @@ import yaml
 from PIL import Image
 from torchvision.transforms import ToTensor, ToPILImage
 
+
 def image_from_path(path):
     if not os.path.exists(path):
         print("File does not exist.")
@@ -11,6 +12,7 @@ def image_from_path(path):
     image = image.resize((224, 224))
     image = ToTensor()(image)
     return image
+
 
 def load_model_config(path):
     if not os.path.exists(path):
@@ -24,6 +26,7 @@ def load_model_config(path):
         del cfg["name"]
         del cfg["weights"]
         return name, cfg, weights_path
+
 
 def save_outputs(data, output_folder):
     if data.device != "cpu":
