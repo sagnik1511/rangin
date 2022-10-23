@@ -42,16 +42,16 @@ class CHNet(nn.Module):
 
         base = []
         base.append(DownBlock(1, self.bf))
-        for level in range(levels-1):
-            base.append(DownBlock(self.bf * 2**level, self.bf*2**(level+1)))
+        for level in range(levels - 1):
+            base.append(DownBlock(self.bf * 2 ** level, self.bf * 2 ** (level + 1)))
 
         return nn.Sequential(*base)
 
     def create_decoder(self, levels):
         base = []
-        for lev in reversed(range(levels-1)):
-            base.append(UpBlock(self.bf*3*2**(lev+1), self.bf*3*2**lev))
-        base.append(UpBlock(self.bf*3, 3))
+        for lev in reversed(range(levels - 1)):
+            base.append(UpBlock(self.bf * 3 * 2 ** (lev + 1), self.bf * 3 * 2 ** lev))
+        base.append(UpBlock(self.bf * 3, 3))
 
         return nn.Sequential(*base)
 
