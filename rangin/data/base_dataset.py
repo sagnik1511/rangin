@@ -1,3 +1,4 @@
+import torch
 from PIL import Image
 from glob import glob
 from torchvision.transforms import ToTensor
@@ -31,4 +32,7 @@ class RDataset:
         if self.transform is not None:
             real = self.transform(real)
             bw = self.transform(bw)
+        real = real[:3, ...]
+        if real.shape[0] == 1:
+            real = torch.cat([real, real, real], axis=0)
         return bw, real

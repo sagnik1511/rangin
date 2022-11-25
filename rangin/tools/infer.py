@@ -3,7 +3,7 @@ import torch
 import numpy as np
 from rangin.models import *
 from rangin.utils.inference import save_outputs
-from utils.inference import *
+from rangin.utils.inference import *
 
 
 def infer(input_data, model, pretrained_weights, output_directory, device="cpu"):
